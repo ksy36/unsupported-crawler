@@ -1,0 +1,5 @@
+psycopg2-binary==2.9.10
+selenium==4.26.1
+torch==2.2.2
+transformers==4.46.2
+webdriver-manager==4.0.2
