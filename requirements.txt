@@ -1,5 +1,10 @@
-psycopg2-binary==2.9.10
-selenium==4.26.1
-torch==2.2.2
-transformers==4.46.2
-webdriver-manager==4.0.2
+psycopg2-binary>=2.9.0
+selenium>=4.26.0
+torch>=2.0.0
+transformers>=4.30.0
+webdriver-manager>=4.0.0
+google-cloud-bigquery
+scikit-learn>=1.0.0
+pandas>=2.0.0
+numpy>=1.21.0
+requests

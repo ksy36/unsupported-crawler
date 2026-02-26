@@ -24,7 +24,7 @@ def predict_chunks(text, tokenizer, model, max_length=512, stride=50, threshold=
         text_chunk = tokenizer.convert_tokens_to_string(tokens_chunk)
         text_chunks_list.append(text_chunk)
 
-        inputs_chunk = tokenizer.encode_plus(
+        inputs_chunk = tokenizer(
             text_chunk,
             add_special_tokens=True,
             max_length=max_length,
@@ -66,7 +66,7 @@ def check_for_message(text, tokenizer, model, threshold=0.9):
     predictions = predict_chunks(text, tokenizer, model, threshold=threshold)
 
     for pred in predictions:
-        if pred['predicted_class'] == 1:
+        if pred['predicted_class'] == 1 and pred['predicted_confidence'] > threshold:
             return 1, pred['text_chunk'], pred['predicted_confidence']
     return 0, None, 1
 
@@ -82,7 +82,8 @@ def classify_text():
         WHERE crg.id IS NULL
         AND g.is_crawled = 1
         AND g.text != 'empty'
-        AND g.is_error = 0;
+        AND g.is_error = 0
+        ORDER BY g.id;
     """)
     texts_data = cursor.fetchall()
 
